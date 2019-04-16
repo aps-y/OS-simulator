@@ -20,7 +20,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
-				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#4ecdc4', '#a4bfeb', '#c5e0d8', '#91bab3' , '#f0ebd8'],
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#4ecdc4', '#a4bfeb', '#c5e0d8', '#91bab3' , '#4BBFC3'],
 				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', '5thpage', '6thpage', '7thpage' , '8thpage'],
 				menu: '#menu',
 				easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
@@ -38,7 +38,7 @@
 	<li data-menuanchor="5thpage"><a href="#5thpage">Process Sync</a></li>
 	<li data-menuanchor="6thpage"><a href="#6thpage">Memory</a></li>
 	<li data-menuanchor="8thpage"><a href="#7thpage">Files</a></li>
-	<li data-menuanchor="10thpage"><a href="../PageReplacement/pgtable.html">Paging</a></li>
+	<li data-menuanchor="10thpage"><a href="#8thpage">Paging</a></li>
 </ul>
 
 <div id="fullpage">
@@ -131,6 +131,27 @@
 		<div class="intro">
 			<h1><a href="../File_System/index.html">File Management</h1>
 			<p>File system represents data from a logical view point. The different directory structures for file systems covered here are single-level, two-level and tree-structured directory.</p>
+		</div>
+	</div>
+	<div class="section" id="section7">
+		<div class="intro">
+			<div class="row">
+				<div class="column2">
+					<h1>    	Paging</h1>
+				</div>
+				<div class="column2">
+					 <ul id="synchronization-style">
+						 <li><a href="../PageReplacement/pgtable.html">Logical Address to Physical Address</a></li>
+						 <li><a href="../PageReplacement/fifo.html">FIFO Page Replacement</a></li>
+						 <li><a href="../PageReplacement/lru.html">LRU Page Replacement</a></li>
+						 <li><a href="../PageReplacement/mru.html">MRU Page Replacement</a></li>
+						 <li><a href="../PageReplacement/optimal.html">Optimal Page Replacement</a></li>
+						 <li><a href="../PageReplacement/lfu.html">LFU Page Replacement</a></li>
+						 <li><a href="../PageReplacement/mfu.html">MFU Page Replacement</a></li>
+
+					 </ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- <div class="section" id="section8">
