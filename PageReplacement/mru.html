@@ -1,0 +1,151 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            body {
+            color:black;
+            font-size:larger;
+        }
+        .jumbotron{
+            color: white;
+        }
+        p {
+            padding: 10px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    
+            </style>
+    </head>
+    <body>
+        <script>
+            var number_of_pages, number_of_frames;
+            var colors = [], frame_content=[], last_accessed=[];
+            var victim = 1;
+            var hits = 0, misses = 0;
+
+            var allotted =0;
+            function getInputs() {
+                number_of_pages = document.getElementById("input_pages").value;
+                number_of_frames = document.getElementById("input_frames").value;
+                console.log(number_of_frames, number_of_pages);
+                var pageTable = document.getElementById("pages");
+                var frameTable = document.getElementById("frames");
+                document.getElementById("pages").innerHTML = "<th>Page Number</th><th>Data</th>";
+                document.getElementById("frames").innerHTML = "<th>Frame Number</th><th>Page</th>";
+                for(var i=0;i<number_of_pages;i++) {
+                    var row = pageTable.insertRow(i+1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var color = "#"+((1<<24)*Math.random()|0).toString(16)
+                    cell2.setAttribute("bgcolor",color);
+                    colors.push(color);
+                    cell1.innerHTML=i;
+                }
+                for(var i=0;i<number_of_frames;i++) {
+                    var row = frameTable.insertRow(i+1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    frame_content.push(-1);
+                    last_accessed.push(0);
+                    cell1.innerHTML=i;
+                }
+            }
+
+            function isHit(pn) {
+                console.log("frame content"+frame_content);
+                for(var j=0;j<number_of_frames;j++) {
+                        if(frame_content[j]==pn) {
+                            last_accessed[j] = 0;
+                            return j;
+                        }
+                    }       
+                    return -1;
+            }
+            function findVictim() {
+                for(var j=0;j<number_of_frames;j++) {
+                    if(frame_content[j]==-1) {
+                        victim = j;
+                        last_accessed[j]=0;
+                        return;
+                    }
+                }
+
+                for(var j=0;j<number_of_frames;j++) {
+                    if(last_accessed[j]==1) {
+                        victim = j;
+                        break;
+                    }
+                }
+                last_accessed[victim] = 0;
+
+            }
+            function lru() {
+                
+                var sequence = document.getElementById("input_page").value.split(" ");
+                
+                for(var i=0;i<sequence.length;i++) {
+                    sequence[i] = parseInt(sequence[i]);
+                    if(sequence[i]>=number_of_pages) {
+                        alert("Page "+sequence[i]+" Not In Given Range");
+                        continue;
+                    }
+                    for(var j=0;j<number_of_frames;j++) {
+                    last_accessed[j]++;
+                    }
+                    var hit = isHit(sequence[i]);
+                    var result = document.createElement("P");
+                    if(hit!=-1) {
+                        hits++;
+                        var txt = "Hit for Page Number "+sequence[i]+" in Frame Number "+hit;
+                        result.append(txt);
+                    }
+                    else {  
+                        misses++;
+                        findVictim();
+                        var txt = "Page Fault. Victim for replacement is page in frame number "+(victim);
+                        result.append(txt);
+                        frame_content[victim] = sequence[i];
+                        document.getElementById("frames").rows[victim+1].cells[1].setAttribute("bgcolor",colors[sequence[i]]);
+
+                        console.log(victim);
+
+                    }
+                    document.getElementById("results").appendChild(result);
+                    document.getElementById("hits").innerHTML = hits;
+                    document.getElementById("faults").innerHTML = misses;
+                    console.log(last_accessed);
+
+                }
+                }
+        </script>
+           <div class="jumbotron">
+            <h1 class="display-3">Most Recently Used Page Replacement</h1>
+            <p class="lead">It is one of the simplest page replacement algorithm. The oldest page, which has spent the longest time in memory is chosen and replaced. This algorithm is implemented with the help of FIFO queue to hold the pages in memory. A page is inserted at the rear end of the queue and is replaced at the front of the queue.</p>
+            <hr class="my-4">
+            <p class="lead">
+              <a class="btn btn-success" href="https://en.wikipedia.org/wiki/Cache_replacement_policies" role="button">Read More</a>
+            </p>
+        </div>
+        <p>Number of Pages: <input class="form-control" id="input_pages" type="number" min=1></p>
+        <p>Number of Frames: <input class="form-control" id="input_frames" type="number" min=1> <button class="btn btn-success" onclick="getInputs()">Submit</button></p>
+        <div>
+            <table id="pages" class="table">
+                <th id = "pageHead1"></th>
+                <th id="pageHead2"></th>
+            </table>
+        </div>
+        <div float="right">
+            <table id="frames" class="table">
+
+            </table>
+        </div>
+        <p>Sequence of Page Accesses:  <input class="form-control" id="input_page"> <button class="btn btn-success" onclick="lru()">Add</button></p>
+        <p>Number of Hits:<div id="hits"></div></p>
+        <p>Number of Page Faults:<div id="faults"></div></p>
+        <p id="results"><strong> Results</strong></p>
+    </body>
+</html>
