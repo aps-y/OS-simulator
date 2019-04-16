@@ -79,7 +79,7 @@
 		<div class="section" id="section1">
 			<div class="container" id="anim">
 				<img id="table" src="includes/table.jpg">
-				<button type="button" class="next" onclick="simulate()">Next</button>
+				<button type="button" class="next" style="background-color: #4286f4; width: 110px;height: 60px; text-align: center;" onclick="simulate()">Next</button>
 
 				<img id="smoker1" src="includes/smoker1.jpg">
 				<img id="smoker2" src="includes/smoker2.jpg">
@@ -91,14 +91,14 @@
 				<div id="s3">Smoker 3</div>
 				<div id="ns">Agent</div>
 
-				<div id="t">Tabocco</div>
-				<div id="p">Papers</div>
-				<div id="m">Matches</div>
-				<div id="su1" align="middle"></div>
-				<div id="su2" align="middle"></div>
+				<div id="t" style="background-color: #ff66c9;">Tabocco</div>
+				<div id="p" style="background-color: #ff66c9;">Papers</div>
+				<div id="m" style="background-color: #ff66c9;">Matches</div>
+				<div id="su1" align="middle" style="background-color: #6f66c9;"></div>
+				<div id="su2" align="middle" style="background-color: #6f66c9;"></div>
 
-				<div id="random">Random numbers generated : 0 0</div>
-				<div id="smoke" align="middle">Smoker 0 smoking</div>
+				<div id="random" style="background-color: #4286f4;">Random numbers generated : 0 0</div>
+				<div id="smoke" align="middle" style="background-color: #4286f4;">Smoker 0 smoking</div>
 
 				<p id="ph1">Smoker 1 has tobacco</p>
 				<p id="ph2">Smoker 2 has papers</p>
@@ -127,6 +127,9 @@
 				document.getElementById("su1").innerHTML = "Tobacco";
 				document.getElementById("su2").innerHTML = "Papers";
 				document.getElementById("ph4").innerHTML = "Agent supplies - Tobacco and Papers";
+				document.getElementById("smoker3").setAttribute("src","includes/cartoon-cigarette.jpg");
+				document.getElementById("smoker2").setAttribute("src","includes/smoker2.jpg");
+				document.getElementById("smoker1").setAttribute("src","includes/smoker1.jpg");
 			}
 			else if((g1==2 && g2==3) || (g1==3 && g2==2))
 			{
@@ -134,6 +137,9 @@
 				document.getElementById("su1").innerHTML = "Papers";
 				document.getElementById("su2").innerHTML = "Matches";
 				document.getElementById("ph4").innerHTML = "Agent supplies - Papers and Matches";
+				document.getElementById("smoker1").setAttribute("src","includes/cartoon-cigarette.jpg");
+				document.getElementById("smoker2").setAttribute("src","includes/smoker2.jpg");
+				document.getElementById("smoker3").setAttribute("src","includes/smoker1.jpg");
 			}
 			else if((g1==1 && g2==3) || (g1==3 && g2==1))
 			{
@@ -141,6 +147,9 @@
 				document.getElementById("su1").innerHTML = "Tobacco";
 				document.getElementById("su2").innerHTML = "Matches";
 				document.getElementById("ph4").innerHTML = "Agent supplies - Tobacco and Matches";
+				document.getElementById("smoker2").setAttribute("src","includes/cartoon-cigarette.jpg");
+				document.getElementById("smoker3").setAttribute("src","includes/smoker2.jpg");
+				document.getElementById("smoker1").setAttribute("src","includes/smoker1.jpg");
 			}
 		
 		}

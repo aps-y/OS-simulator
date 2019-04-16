@@ -6,7 +6,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -54,56 +53,57 @@
             </div>
             <br>
 
-	        		<div class="row">
-	        			<div class="form-group" style="margin-left:50px; float:left;">
-	        				<label class="col-form-label" for="inputDefault">Enter Total Memory Size</label>
-	                        <input class="form-control" id="totalMemSize" name="mem_size" placeholder="Total Memory Size" type="text" size="35">
-	                    </div>
-							<!-- <input type='text' id='totalMemSize'>
-							<input type='text' id='numBlocks'> -->
-							<!-- <button id='submitBtn'>Submit</button> -->
-							<div class="form-group" style="margin-left:50px; float:left;">
-								<label class="col-form-label" for="sel1">Allocation Strategy</label>
-									<select class="form-control" id="sel1">												                                                                    											<option>Best Fit</option>																														                                                                    											<option>First Fit</option>																																					                                                                      											<option>Worst Fit</option>																						
-                  <option> Next Fit </option>														                                                              										</select> 
-					</div>
-					<div class="row">
-						<div class="form-group" style="margin-left:50px; float:left;">
+              <div class="row">
+                <div class="form-group" style="margin-left:50px; float:left;">
+                  <label class="col-form-label" for="inputDefault">Enter Total Memory Size</label>
+                          <input class="form-control" id="totalMemSize" name="mem_size" placeholder="Total Memory Size" type="text" size="35">
+                      </div>
+              <!-- <input type='text' id='totalMemSize'>
+              <input type='text' id='numBlocks'> -->
+              <!-- <button id='submitBtn'>Submit</button> -->
+              <div class="form-group" style="margin-left:50px; float:left;">
+                <label class="col-form-label" for="sel1">Allocation Strategy</label>
+                  <select class="form-control" id="sel1">                                                                                                                 <option>Best Fit</option>                                                                                                                                                     <option>First Fit</option>                                                                                                                                                                      <option>Worst Fit</option>                                            
+                  <option> Next Fit </option>                                                                                                             </select>
+                                                                                                                                                                        </div>  
+          </div>
+          <div class="row">
+            <div class="form-group" style="margin-left:50px; float:left;">
 
-						 <label class="checkbox-inline"><input type="checkbox" name="optradio">Compaction</label>
-					</div>
-					</div>
-					<button type="submit" id="submitBtn" class="btn btn-primary" style="margin-left: 36px">Submit
-					</button>
-					<br>
-					<div class="row">
-						<div id='#requestContainer'>
-							<div class="form-group" style="margin-left:50px; float:left;">
-		        				<label class="col-form-label" for="inputDefault">Request ID</label>
-		                        <input class="form-control" id="requestId" name="req_size" placeholder="Request ID" type="text" size="35">
-					<label class="col-form-label" for="inputDefault">Enter size of New Request</label>
-					<input class="form-control" id="requestSize" name="req_size" placeholder="Request Size" type="text" size="35">
+             <label class="checkbox-inline"><input type="checkbox" name="optradio">Compaction</label>
+          </div>
+          </div>
+          <button type="submit" id="submitBtn" class="btn btn-primary" style="margin-left: 36px">Submit
+          </button>
+          <br>
+          <div class="row">
+            <div id='#requestContainer'>
+              <div class="form-group" style="margin-left:50px; float:left;">
+                    <label class="col-form-label" for="inputDefault">Request ID</label>
+                            <input class="form-control" id="requestId" name="req_size" placeholder="Request ID" type="text" size="35">
+          <label class="col-form-label" for="inputDefault">Enter size of New Request</label>
+          <input class="form-control" id="requestSize" name="req_size" placeholder="Request Size" type="text" size="35">
 
-		                    </div>
-							<!-- <input type='text' id='requestSize'></input> -->
-							<!-- <button id='submitRequestBtn'>Make request!</button> -->
-							<!-- <p id='requestMsg'></p> -->
-						</div>
-					</div>
-					<button type="submit" class="btn btn-primary" style="margin-left: 36px" id='submitRequestBtn'>Make request!</button>
-					<div class="row">
-						<div id='#removeContainer'>
-							<div class="form-group" style="margin-left:50px; float:left;">
-		        				<label class="col-form-label" for="inputDefault">Block to Empty</label>
-		                        <input class="form-control" id="removeNum" name="req_size" placeholder="Empty a block" type="text" size="35">
-		                    </div>
-							<!-- <input type='text' id='requestSize'></input> -->
-							<!-- <button id='submitRequestBtn'>Make request!</button> -->
-							<!-- <p id='requestMsg'></p> -->
-						</div>
+                        </div>
+              <!-- <input type='text' id='requestSize'></input> -->
+              <!-- <button id='submitRequestBtn'>Make request!</button> -->
+              <!-- <p id='requestMsg'></p> -->
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-left: 36px" id='submitRequestBtn'>Make request!</button>
+          <div class="row">
+            <div id='#removeContainer'>
+              <div class="form-group" style="margin-left:50px; float:left;">
+                    <label class="col-form-label" for="inputDefault">Block to Empty</label>
+                            <input class="form-control" id="removeNum" name="req_size" placeholder="Empty a block" type="text" size="35">
+                        </div>
+              <!-- <input type='text' id='requestSize'></input> -->
+              <!-- <button id='submitRequestBtn'>Make request!</button> -->
+              <!-- <p id='requestMsg'></p> -->
+            </div>
 </div>
-				<button type="submit" class="btn btn-primary" style="margin-left: 36px; float:left;" id='removeBtn'>Empty Block</button>
-	<p id='requestMsg' style="float:left; margin-left:50px;"></p>
+        <button type="submit" class="btn btn-primary" style="margin-left: 36px; float:left; margin-bottom: 36px;" id='removeBtn'>Empty Block</button>
+  <p id='requestMsg' style="float:left; margin-left:50px; color: black"></p>
         </div>
     </body>
     <script src='scripts/main.js'></script>

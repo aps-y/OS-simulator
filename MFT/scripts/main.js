@@ -8,6 +8,8 @@ var submitBtn = document.querySelector('#submitBtn');
 submitBtn.onclick = getInitValues;
 
 function getInitValues() {
+	for(i = 0; i < numblocks; i++)
+				filled[i]=0
 	totalsize = document.querySelector('#totalMemSize').value;
 	numblocks = document.querySelector('#numBlocks').value;
 	var message = 'Read totalsize =' + totalsize + ' and numblocks = ' + numblocks;
@@ -67,11 +69,12 @@ function getInitValues() {
 			removeBtn.onclick = handleRemove;
 		}
 		function handleRequest() {
+
 			var alloc = -1;
 			var requestSize = document.querySelector('#requestSize').value;
 			if(parseInt(requestSize) < 0)
 				render("Please give a valid request", document.querySelector('#requestMsg'));
-			else {
+			else if(document.getElementById("FF").checked == true){
 				for(i = 0; i < numblocks; i++) {
 					//perform a first fit request
 					//console.log(blocks[i]);
@@ -91,18 +94,72 @@ function getInitValues() {
 					}
 				}
 			}
+			else if(document.getElementById("BF").checked == true){
+				var t =10000;
+				var k;
+				
+				for(i = 0; i < numblocks; i++) {
+
+					if(parseInt(blocks[i]) >= parseInt(requestSize) && t > parseInt(blocks[i]) && filled[i] == 0) {
+
+						t = parseInt(blocks[i]);
+						k = i;
+						
+						// break;
+					}
+				}
+				filled[k] = 1;
+						render('block ' + (k+1) + ' used for the request BF', document.querySelector('#requestMsg'));
+						var blck = document.querySelector('#blockSize'+k);
+						// console.log(blck.setAttribute('color':"green") );
+						// var blck = document.getElementById('#blockSize' + i);
+
+						blck.setAttribute("style","background-color:#82e0c4");
+						console.log("manan")
+
+						alloc = i;
+
+			}
+
+			else if(document.getElementById("WF").checked == true){
+				var t =-1;
+				var k;
+				
+				for(i = 0; i < numblocks; i++) {
+
+					if(parseInt(blocks[i]) >= parseInt(requestSize) && t < parseInt(blocks[i]) && filled[i] == 0) {
+
+						t = parseInt(blocks[i]);
+						k = i;
+						
+						// break;
+					}
+				}
+				filled[k] = 1;
+						render('block ' + (k+1) + ' used for the request BF', document.querySelector('#requestMsg'));
+						var blck = document.querySelector('#blockSize'+k);
+						// console.log(blck.setAttribute('color':"green") );
+						// var blck = document.getElementById('#blockSize' + i);
+
+						blck.setAttribute("style","background-color:#82e0c4");
+						console.log("manan")
+
+						alloc = i;
+
+			}
+
 			if(alloc == -1)
 				render("Appropriate block is not available at this time", document.querySelector('#requestMsg'));
 		}
 
 		function handleRemove() {
 			var remove = document.querySelector('#removeNum').value ;
-			if(parseInt(remove) > numblocks || parseInt(remove) < 0|| filled[parseInt(remove)] == 0)
+			if(parseInt(remove) > numblocks || parseInt(remove) < 0|| filled[(parseInt(remove)-1)] == 0)
 			{
-				render("already empty", document.querySelector('#requestMsg'));
+				render("already empty or invalid block", document.querySelector('#requestMsg'));
 			}
 			else {
-				filled[parseInt(remove)] = 0;
+				filled[(parseInt(remove)-1)] = 0;
 				render('block has been cleared ' + (remove), document.querySelector('#requestMsg'));
 				var blck = document.querySelector('#blockSize'+(parseInt(remove)-1));
 				blck.setAttribute("style","background-color:white");

@@ -247,12 +247,12 @@ var res,pro;
 									}
 									if(flag)
 									{
-										console.log("Process " + i + " doesn't have enough resources");
+										console.log("Process " + i + " has enough resources");
 										console.log("Need: " + needy[i]);
 										console.log("Current resources available: " + avail);
                                         var li = document.createElement("li");
                                         li.setAttribute("style","color:black");
-                                        li.appendChild(document.createTextNode("Process " + i + " doesn't have enough resources"));
+                                        li.appendChild(document.createTextNode("Process " + i + " has enough resources"));
                                         ul2.append(li);
                                         ul1.append(ul2);
                                         ul2.setAttribute("style","color:black");
@@ -260,7 +260,7 @@ var res,pro;
                                         prints.appendChild(ul1);
                                         var li = document.createElement("li");
                                         li.setAttribute("style","color:black");
-                                        li.appendChild(document.createTextNode("Need: " + needy[i]));
+                                        li.appendChild(document.createTextNode("Need: " + Math.abs(parseInt(needy[i]))));
                                         ul2.append(li);
                                         ul1.append(ul2);
                                         ul2.setAttribute("style","color:black");
@@ -268,7 +268,7 @@ var res,pro;
                                         prints.appendChild(ul1);
                                         var li = document.createElement("li");
                                         li.setAttribute("style","color:black");
-                                        li.appendChild(document.createTextNode("Avail: " + avail));
+                                        li.appendChild(document.createTextNode("Avail: " + Math.abs(parseInt(avail))));
                                         ul2.append(li);
                                         ul1.append(ul2);
                                         ul2.setAttribute("style","color:black");

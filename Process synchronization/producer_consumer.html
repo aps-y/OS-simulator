@@ -79,22 +79,22 @@
 	    <div class="section" id="section1">
 	    	<div class="container" id="anim">
 				<input type="image" src="includes/play.png" class="play1" onclick="toggle1(this);"/>
-				<img id="prod" src="includes/producer.png" >
+				<img id="prod" src="includes/producer.png"  style="padding-right: 50px">
 				<img id="producer" src="includes/prod.png">
-				<div class="buffer">Buffer size : 8</div>
-				<div id="count">Counter : 0</div>
+				<div class="buffer" style="background-color: #4286f4;">Buffer size : 8</div>
+				<div id="count" style="background-color: #4286f4;">Counter : 0</div>
 				<input type="image" src="includes/play.png" class="play2" onclick="toggle2(this);"/>
-				<img id="cons" src="includes/consumer.png" >
+				<img id="cons" src="includes/consumer.png" style="padding-right: 50px" >
 				<img id="consumer" src="includes/cons.png">
 				
-				<img id="empty1" src="includes/empty.png">
-				<img id="empty2" src="includes/empty.png">
-				<img id="empty3" src="includes/empty.png">
-				<img id="empty4" src="includes/empty.png">
-				<img id="empty5" src="includes/empty.png">
-				<img id="empty6" src="includes/empty.png">
-				<img id="empty7" src="includes/empty.png">
-				<img id="empty8" src="includes/empty.png">
+				<img id="empty1" style="background-color: #4286f4;" >
+				<img id="empty2"style="background-color: #4286f4;" >
+				<img id="empty3"  style="background-color: #4286f4;">
+				<img id="empty4"  style="background-color: #4286f4;">
+				<img id="empty5"  style="background-color: #4286f4;">
+				<img id="empty6"  style="background-color: #4286f4;">
+				<img id="empty7"  style="background-color: #4286f4;">
+				<img id="empty8"  style="background-color: #4286f4;">
 			</div>
 		</div>
 </div>
@@ -113,7 +113,7 @@
 			el.src="includes/pause.png";
 			el.className="pause1";
 			flag2 = 1;
-			document.getElementById("prod").src="includes/producer.gif";
+			document.getElementById("prod").src="includes/producer.jpg";
 			var intclear = setInterval(function(){
 				if(el.className!="play1") {
 				str="empty"+(end+1);
@@ -162,12 +162,12 @@
 			el.src="includes/pause.png";
 			el.className="pause2";
 			flag1 = 1;
-			document.getElementById("cons").src="includes/consumer.gif";
+			document.getElementById("cons").src="includes/consumer.jpg";
 			var intclear = setInterval(function(){
 				if(el.className!="play2") {
 				str="empty"+(start+1);
 				count--;
-				document.getElementById(str).src="includes/empty.png";
+				document.getElementById(str).src="";
 				document.getElementById("count").innerHTML = "Counter : "+count;
 				start = (start+1)%8;
 				if(count==0)
