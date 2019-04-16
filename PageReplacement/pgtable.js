@@ -78,6 +78,7 @@ function checkentry()
 			msg += newl;
 			msg += "Physical Address: " + p_pa;
 			alert(msg);
+			document.getElementById("resultss").appendChild(msg);
 		}
 		console.log(p_pgno);
 		console.log(p_offset);
