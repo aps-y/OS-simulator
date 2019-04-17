@@ -1,5 +1,5 @@
 var clipboard = []                // To store files to clipboard to copy or move them 
-var pre = "user@root"            // Beginning of each terminal line
+var pre = "chetan@root"            // Beginning of each terminal line
 var current_path = "/"            // Current location of user     
 var pointer = -1                   // pointer points to the index of the current directory
                                    //pointer = -1 corresponds to root directory

@@ -69,7 +69,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                         }
                 
                         var layout = {
-                                // title: 'FCFS',
+                                title: 'FCFS',
                                 xaxis: {
                                         autorange: true,
                                         showgrid: true,
