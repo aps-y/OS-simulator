@@ -84,7 +84,7 @@
                     }
                     else {  
                         misses++;
-                        var txt = "<li>Page Fault. Victim for replacement is page in frame number "+(pointer-1)+"</li>";
+                        var txt = "Page Fault. Victim for replacement is page in frame number "+(pointer-1);
                         result.append(txt);
                         frame_content[pointer-1] = sequence[i];
                         document.getElementById("frames").rows[pointer].cells[1].setAttribute("bgcolor",colors[sequence[i]]);
@@ -135,8 +135,8 @@
         </div>
         <p>Sequence of Page Accesses:  <input class="form-control" id="input_page"> <button class="btn btn-success" onclick="fifo()">Add</button></p>
 
-        <p>Number of Hits:<div id="hits"></p>
-        <p>Number of Page Faults:<div id="faults"></p>
+        <p>Number of Hits:<div id="hits"></div></p>
+        <p>Number of Page Faults:<div id="faults"></div></p>
         <p id="results"><strong> Results:</strong></p>
 
     </body>
