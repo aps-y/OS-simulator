@@ -245,14 +245,14 @@ var res,pro;
 											break;
 										}
 									}
-									if(flag)
+									if(j<res)
 									{
-										console.log("Process " + i + " has enough resources");
-										console.log("Need: " + needy[i]);
-										console.log("Current resources available: " + avail);
+										// console.log("Process " + i + " has enough resources");
+										console.log("Needed Resources : " + needy[i]);
+										console.log("Available Resources: " + avail);
                                         var li = document.createElement("li");
                                         li.setAttribute("style","color:black");
-                                        li.appendChild(document.createTextNode("Process " + i + " has enough resources"));
+                                        li.appendChild(document.createTextNode("Process " + i + " does not have enough resources"));
                                         ul2.append(li);
                                         ul1.append(ul2);
                                         ul2.setAttribute("style","color:black");
