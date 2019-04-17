@@ -6,18 +6,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../Index/css/bootswatch.css" />
     <link rel="stylesheet" type="text/css" href="../css/index.css"></link>
-		<script type="text/javascript" src="../js/index.js"></script>
-		<style>
-			body {
-					color: black;
-			}
-			.jumbotron{
-					color: white;
-			}
-			</style>
-	
+    <script type="text/javascript" src="../js/index.js"></script>
+    <style>
+        body {
+            background-color: rgb(60,179,113);
+        }
+
+        .circle {
+            border-radius: 25px;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            background: #000
+        }
+        #heading{
+            padding-top: 25px;
+        }
+    </style>
+
 </head>
-<body >
+<body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="../../Index/index.html#firstPage">Operationg System Simulator</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
@@ -27,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Process Scheduling<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../../Index/index.html#secondPage">Process Scheduling<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="../../Index/index.html#4thpage">Disk Scheduling</a>
@@ -53,9 +61,12 @@
     <br>
 	<div class="container">
 		<!-- Input section -->
-		<div class="jumbotron">
-            <h1 class="display-3">SJF Scheduling</h1>
+		<div class="circle">
+            <h1 id="heading">SJF Scheduling</h1>
             <br>
+        </div>
+        <br>
+        <br>
 			<div id="showinput"></div>
 			<hr>
 			<div class="row">
@@ -73,6 +84,16 @@
 			<button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="clearData()">Clear Data</button>
 			<button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(1)">Schedule It!</button>
 		</div>
+    <!-- Table -->
+    <div style="margin-top: 50px;">
+        <h2 id="table-heading" style="text-align:center;"></h2>
+        <div>
+            <table id="tab" class="table table-striped centered responsive-table" style="border-color: black; border-width: 2px; align: center; bgcolor: white; cellspacing: 10px;">
+                <thead id="thead"></thead>
+                <tbody id="ptable"></tbody>
+            </table>
+        </div>
+    </div>
 		<!-- Gantt Chart -->
 		<div style="margin-top: 150px;">
 			<h2 id ="chart-header" style="text-align:center;"></h2>
@@ -87,20 +108,11 @@
         </div>
 		<br>
 		<!-- CPU Operations -->
-		<div style="margin-top: 100px;">
+		<div style="margin-top: 100px;display:none;">
 			<h3 id="operations-heading" style="text-align:center;"></h3>
 			<div id="operations"></div>
 		</div>
-		<!-- Table -->
-		<div style="margin-top: 50px;">
-			<h2 id="table-heading" style="text-align:center;"></h2>
-			<div>
-				<table id="tab" class="table table-striped centered responsive-table" style="border-color: black; border-width: 2px; align: center; bgcolor: white; cellspacing: 10px;">
-					<thead id="thead"></thead>
-					<tbody id="ptable"></tbody>
-				</table>
-			</div>
-		</div>
+
     </div>
 </body>
 </html>
