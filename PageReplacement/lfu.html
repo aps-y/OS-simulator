@@ -5,7 +5,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <style>
-        body {
+         body {
             color:black;
             font-size:larger;
         }
@@ -16,12 +16,13 @@
             padding: 10px;
         }
         button {
-            margin-top: 10px;
+            margin-left: 30px;
         }
 
         </style>
     <body>
         <script>
+            var PhyAddrSpace, logAddrSpace, frameSize;
             var number_of_pages, number_of_frames;
             var colors = [], frame_content=[],      access_counts=[];
             var victim = 1;
@@ -29,28 +30,37 @@
             var hits = 0, misses = 0;
 
             function getInputs() {
-                number_of_pages = document.getElementById("input_pages").value;
-                number_of_frames = document.getElementById("input_frames").value;
+                logAddrSpace = document.getElementById("logAddrSpace").value;
+                PhyAddrSpace = document.getElementById("PhyAddrSpace").value;
+                frameSize = document.getElementById("frameSize").value;
+                number_of_pages = Math.ceil(logAddrSpace/frameSize);
+                number_of_frames = PhyAddrSpace/frameSize;
                 console.log(number_of_frames, number_of_pages);
-                var pageTable = document.getElementById("pages");
+                document.getElementById("head1").innerHTML="Page Table";
+                document.getElementById("head2").innerHTML="Physical Memory";
+                var processTable = document.getElementById("pages");
                 var frameTable = document.getElementById("frames");
-                document.getElementById("pages").innerHTML = "<th>Page Number</th><th>Data</th>";
+
+                document.getElementById("pages").innerHTML = "<th>Page Number</th><th> Frame Allocated</th><th>Data</th>";
                 document.getElementById("frames").innerHTML = "<th>Frame Number</th><th>Page</th>";
+                
                 for(var i=0;i<number_of_pages;i++) {
-                    var row = pageTable.insertRow(i+1);
+                    var row = processTable.insertRow(i+1);
                     var cell1 = row.insertCell(0);
                     var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
                     var color = "#"+((1<<24)*Math.random()|0).toString(16)
-                    cell2.setAttribute("bgcolor",color);
+                    cell3.setAttribute("bgcolor",color);
                     colors.push(color);
                     cell1.innerHTML=i;
+                    cell2.innerHTML = "-";
                 }
                 for(var i=0;i<number_of_frames;i++) {
                     var row = frameTable.insertRow(i+1);
                     var cell1 = row.insertCell(0);
                     var cell2 = row.insertCell(1);
                     frame_content.push(-1);
-                        access_counts.push(0);
+                    access_counts.push(0);
                     cell1.innerHTML=i;
                 }
             }
@@ -89,33 +99,39 @@
                 
                 for(var i=0;i<sequence.length;i++) {
                     sequence[i] = parseInt(sequence[i]);
-                    if(sequence[i]>=number_of_pages) {
-                        alert("Page "+sequence[i]+" Not In Given Range");
+                    if(sequence[i]>=logAddrSpace) {
+                        alert("Logical Address Not In Given Range");
                         continue;
                     }
-                
-                    var hit = isHit(sequence[i]);
+                    var temp = parseInt(sequence[i]/frameSize);
+                    console.log(temp);
+                    var hit = isHit(temp);
                     var result = document.createElement("P");
                     if(hit!=-1) {
                         hits++;
-                        var txt = "Hit for Page Number "+sequence[i]+" in Frame Number "+hit;
+                        var txt = "Page Accessed: "+temp+", Page Offset: "+parseInt(sequence[i]%frameSize)+". Hit in Frame Number "+hit;
                         result.append(txt);
                     }
                     else {  
                         misses++;
                         findVictim();
-                        var txt = "Page Fault. Victim for replacement is page in frame number "+(victim);
+                        var txt = "Page Accessed: "+temp+", Page Offset: "+parseInt(sequence[i]%frameSize)+". Page Fault. Victim for replacement is frame number "+victim;
                         result.append(txt);
-                        frame_content[victim] = sequence[i];
+                        var invalid = frame_content[victim];
+                        if(invalid!=-1) {
+                        document.getElementById("pages").rows[invalid+1].cells[1].innerHTML = "-";
+                        }
+                        frame_content[victim] = temp;
                         access_counts[victim] = 0;
-                        document.getElementById("frames").rows[victim+1].cells[1].setAttribute("bgcolor",colors[sequence[i]]);
+                        document.getElementById("pages").rows[temp+1].cells[1].innerHTML = victim;
+                        document.getElementById("frames").rows[victim+1].cells[1].setAttribute("bgcolor",colors[temp]);
 
                         console.log(victim);
 
                     }
                     document.getElementById("results").appendChild(result);
-                    document.getElementById("hits").innerHTML = hits;
-                    document.getElementById("faults").innerHTML = misses;
+                    document.getElementById("hits").innerHTML = "<strong>Number of Hits: <strong>"+hits;
+                    document.getElementById("faults").innerHTML = "<strong>Number of Page Faults: <strong>"+misses;
                     console.log(access_counts);
 
                 }
@@ -129,22 +145,42 @@
               <a class="btn btn-success" href="https://en.wikipedia.org/wiki/Least_frequently_used" role="button">Read More</a>
             </p>
         </div>
-        <p>Number of Pages: <input class="form-control" id="input_pages" type="number" min=1></p>
-        <p>Number of Frames: <input class="form-control" id="input_frames" type="number" min=1> <button class="btn btn-success" onclick="getInputs()">Submit</button></p>
-        <div>
-            <table id="pages" class="table">
+        
+        <form>
+            	<fieldset>
+            		<div class="row">
+            			<div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+                            <label class="col-form-label">Size of Logical Address Space</label>
+                            <input class="form-control" id="logAddrSpace" placeholder="Size Logical" type="number" size="30" >
+                        </div>
+                        <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+                            <label class="col-form-label">Size of Physical Address Space</label>
+                            <input class="form-control" id="PhyAddrSpace" placeholder="Size Physical" type="number" size="30">
+                        </div>
+                        <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+                            <label class="col-form-label">Size of Frame</label>
+                            <input class="form-control" id="frameSize" placeholder="Size Page" type="number" size="30">
+                        </div>
+            		</div>
+            	</fieldset>
+            </form>
+            <button class="btn btn-success" onclick="getInputs()">Submit</button></p>
+            <div> 
+            <h3 id="head1" style="margin-left:200px;"></h3>
+            <table id="pages" class="table"  style="width:600px; margin-left:100px;">
                 <th id = "pageHead1"></th>
                 <th id="pageHead2"></th>
             </table>
-        </div>
-        <div float="right">
-            <table id="frames" class="table">
-
+            <br><br>
+            <h3 id="head2" style="margin-left:200px;"></h3>
+            <table float="right" id="frames" class="table" style="width:400px; margin-left:100px;">
             </table>
+            <br><br>
         </div>
-        <p>Sequence of Page Accesses:  <input class="form-control" id="input_page"> <button class="btn btn-success" onclick="lfu()">Add</button></p>
-        <p>Number of Hits:<div id="hits"></div></p>
-        <p>Number of Page Faults:<div id="faults"></div></p>
-        <p id="results"><strong> Results</strong></p>
+        <p>Sequence of Page Accesses (Logical Addresses):  <input class="form-control" id="input_page"> <button style="margin-top:20px; margin-left:10px;" class="btn btn-success" onclick="lfu()">Add</button></p>
+
+        <div id="hits" style="margin-left:10px;"></div>
+        <div id="faults" style="margin-left:10px;"></div>
+        <p id="results"><strong> Results:</strong></p>
     </body>
 </html>
