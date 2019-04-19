@@ -59,7 +59,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                         var a1;
                         for(a1=1;a1<=inp.length;++a1){
                                 x1.push(inp[a1-1]);
-                                y1.push(-1*a1);
+                                y1.push(a1);
                                 if(a1==1){
                                         seek=seek+Math.abs(ini-inp[a1-1]);
                                 }
@@ -131,7 +131,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 visited[idx]=1;
                                 hold=inp[idx];
                                 x1.push(inp[idx]);
-                                y1.push(-1*a1);
+                                y1.push(a1);
                         }
                         var layout = {
                                 // title: 'SSTF',
@@ -236,7 +236,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 ++count;
                                 for(a1=store-1;a1>=0;--a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         console.log(seek);
@@ -323,16 +323,16 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 seek=seek+hold;
                                 hold=final;
                                 x2.push(0);
-                                y2.push(-1*count);
+                                y2.push(count);
                                 x2.push(final);
-                                y2.push(-1*count);
+                                y2.push(count);
                                 
                                 x3.push(final);
-                                y3.push(-1*count);
+                                y3.push(count);
                                 ++count;
                                 for(a1=inp.length-1;a1>store;--a1){
                                         x3.push(inp[a1]);
-                                        y3.push(-1*count);
+                                        y3.push(count);
                                         ++count;      
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];                          
@@ -344,26 +344,26 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 var count=1;
                                 for(a1=store;a1<inp.length;++a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];
                                 }
                                 x1.push(final);
-                                y1.push(-1*count);
+                                y1.push(count);
                                 seek=seek+final-hold;
                                 hold=0;
                                 x2.push(final);
-                                y2.push(-1*count);
+                                y2.push(count);
                                 x2.push(0);
-                                y2.push(-1*count);
+                                y2.push(count);
                                 
                                 x3.push(0);
-                                y3.push(-1*count);
+                                y3.push(count);
                                 ++count;
                                 for(a1=0;a1<store;++a1){
                                         x3.push(inp[a1]);
-                                        y3.push(-1*count);
+                                        y3.push(count);
                                         ++count;      
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];                          
@@ -452,7 +452,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 var count=1;
                                 for(a1=store;a1>=0;--a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];
@@ -460,7 +460,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 
                                 for(a1=store+1;a1<inp.length;++a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;      
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];                          
@@ -472,7 +472,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 var count=1;
                                 for(a1=store;a1<inp.length;++a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;      
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];                          
@@ -480,7 +480,7 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 
                                 for(a1=store-1;a1>=0;--a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];
@@ -556,23 +556,23 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 var count=1;
                                 for(a1=store;a1>=0;--a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];
                                 }
                                 
                                 x2.push(hold);
-                                y2.push(-1*(count-1));
+                                y2.push((count-1));
                                 x2.push(inp[inp.length-1]);
-                                y2.push(-1*(count-1));
+                                y2.push((count-1));
                                 x3.push(inp[inp.length-1]);
-                                y3.push(-1*(count-1));
+                                y3.push((count-1));
                         
                                 hold=inp[inp.length-1];
                                 for(a1=inp.length-2;a1>store;--a1){
                                         x3.push(inp[a1]);
-                                        y3.push(-1*count);
+                                        y3.push(count);
                                         ++count;      
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];                          
@@ -584,24 +584,24 @@ var pre,v1,v2,v3,v4,v5,v6,dir;
                                 var count=1;
                                 for(a1=store;a1<inp.length;++a1){
                                         x1.push(inp[a1]);
-                                        y1.push(-1*count);
+                                        y1.push(count);
                                         ++count;
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];
                                 }
                                 
                                 x2.push(hold);
-                                y2.push(-1*(count-1));
+                                y2.push((count-1));
                                 x2.push(inp[0]);
-                                y2.push(-1*(count-1));
+                                y2.push((count-1));
                                 
                                 x3.push(inp[0]);
-                                y3.push(-1*(count-1));
+                                y3.push((count-1));
                         
                                 hold=inp[0];
                                 for(a1=1;a1<store;++a1){
                                         x3.push(inp[a1]);
-                                        y3.push(-1*count);
+                                        y3.push(count);
                                         ++count;      
                                         seek=seek+Math.abs(hold-inp[a1]);
                                         hold=inp[a1];                          
